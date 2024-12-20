@@ -1,0 +1,147 @@
+1. Principe du Tri à Bulles (Bubble Sort)
+Le tri à bulles consiste à parcourir un tableau 
+T de taille N en partant de la fin vers le début, avec un index i.
+ À chaque étape, la partie du tableau à droite de 
+i est considérée comme triée.
+ On parcourt ensuite la partie gauche (non triée) avec un index j.
+ Si T[j−1]>T[j], on échange les deux éléments.
+
+2. Tri à Bulles Optimisé (BubbleSortOpt)
+Après le i éme passage dans le tableau,  les iderniers éléments sont à leur place finale .
+Ainsi, à chaque passage, on peut arrêter le parcours un index avant celui précédent.
+
+Comparaison des Algorithmes
+
+Bubble Sort a une complexité temporelle moyenne et pire de 
+O(n^2), tandis que le cas meilleur est O(n) lorsque le tableau est déjà trié.
+
+Bubble Sort Optimisé améliore légèrement la situation en réduisant le nombre d'itérations dans le cas où le tableau devient trié avant d'avoir terminé toutes les passes, mais reste également O(n^2) dans le pire des cas.
+
+
+Le Gnome Sort, également connu sous le nom de "stupid sort", est un algorithme de tri simple qui fonctionne de manière similaire à l'Insertion Sort. Voici une description de son principe, ainsi qu'un programme en C et une analyse de sa complexité théorique.
+
+Principe du Gnome Sort
+
+Le Gnome Sort commence au début du tableau et compare deux éléments consécutifs (i, i+1) :
+Si les éléments sont dans le bon ordre, on avance d'un pas vers la fin du tableau (incrément).
+Si les éléments ne sont pas dans le bon ordre, on les échange et on recule d'un pas (décrément).
+Si l'on est au début du tableau et qu'un échange est nécessaire, on avance d'un pas.
+L'algorithme continue ce processus jusqu'à ce que le tableau soit entièrement trié.
+
+Complexité Théorique
+Meilleur Cas
+Complexité : O(n), Lorsque le tableau est déjà trié.
+Pire Cas
+Complexité :O(n^2),Lorsque le tableau est trié dans l'ordre inverse.
+Complexité Spatiale
+Complexité : O(1) 
+En résumé, bien que le Gnome Sort soit facile à comprendre et à implémenter, il n'est pas très efficace pour des tableaux de grande taille comparé à d'autres algorithmes de tri comme le QuickSort ou l'Insertion Sort.
+
+
+Radix Sort
+Le Radix Sort est un algorithme de tri qui trie les entiers en fonction de leurs chiffres, en commençant par le chiffre le moins significatif (unités), puis en passant aux dizaines, aux centaines, etc. Voici comment implémenter cet algorithme en C, y compris la fonction clé et la fonction auxiliaire pour le tri.
+
+Fonction clé
+La fonction clé retourne le chiffre à une position donnée d'un entier. Par exemple, pour extraire le chiffre des unités, des dizaines ou des centaines
+
+Exemple d'utilisation de key
+key(143, 0) retourne 3 (chiffre des unités).
+key(143, 1) retourne 4 (chiffre des dizaines).
+key(143, 2) retourne 1 (chiffre des centaines).
+
+Fonction auxiliaire SortAux
+Cette fonction réorganise les éléments d'un tableau en fonction du chiffre à la position spécifiée
+
+Fonction RadixSort
+Cette fonction utilise SortAux pour trier l'ensemble du tableau
+
+Complexité Théorique
+Meilleur Cas
+Complexité : O(n*k) , Lorsque tous les nombres ont le même nombre de chiffres.
+Pire Cas
+Complexité : O(n*k) , Lorsque les nombres sont très dispersés et nécessitent un tri complet.
+Meilleur Cas=Pire Cas
+donc la complexité est de l'ordre téta(n)
+
+Complexité Spatiale
+Complexité : O(n+k)
+où n est le nombre d'éléments à trier et k est la base du système numérique utilisé (par exemple, pour des entiers décimaux, k=10)
+ Radix Sort est particulièrement efficace pour trier des nombres entiers ou des chaînes de caractères lorsque la taille des clés est limitée.
+
+Quick Sort
+Le Quick Sort est un algorithme de tri basé sur la méthode "diviser pour régner". Voici comment l'implémenter en C, ainsi qu'une analyse de sa complexité théorique.
+Principe du Quick Sort
+
+1-Diviser : Partitionner le tableau en deux sous-tableaux de sorte que tous les éléments du premier sous-tableau soient inférieurs ou égaux à un élément pivot, et tous les éléments du second sous-tableau soient supérieurs.
+
+2-Conquérir : Appliquer récursivement le Quick Sort sur les deux sous-tableaux.
+
+3-Combiner : Comme le tri se fait en place, aucune opération supplémentaire n'est nécessaire pour combiner les sous-tableaux.
+
+Complexité Temporelle
+Meilleur Cas : O(nlogn)
+Cela se produit lorsque le pivot choisit divise toujours les tableaux en deux parties presque égales.
+Pire Cas : O(n^2)
+Cela se produit lorsque le tableau est déjà trié ou presque trié et que le pivot choisi est toujours le plus grand ou le plus petit élément.
+
+Complexité Spatiale : O(logn)
+Le Quick Sort est souvent préféré pour sa rapidité et son efficacité dans la plupart des cas pratiques.
+
+ la fonction du recurrence 
+
+Meilleur Cas : O(nlogn)
+
+T(1)=1
+T(n)=2T( n/2 )+O(n)
+
+La résolution par subtitution de l'équation de reccurence 
+T(1)=1
+T(n)=2T( n/2 )+n
+    =2^2T(n/2^2)+n+n
+    =2^3T(n/2^3)+n+n+n
+    .........
+    par généralisation 
+   =2^kT(n/2^k)+k*n 
+    on pose n = 2^k
+   don k = log(n)
+   =nT(1)+nlog(n)
+   =n + nlog(n)
+max(n , nlog(n)) = nlog(n)
+O(n) représente le temps nécessaire pour effectuer la partition.
+
+Pire Cas : O(n^2)
+T(1)=1
+T(n)=T(n−1)+n
+   =T(n-2)+(n-1)+n
+   =T(n-3)+(n-2)+(n-1)+n
+   ..........
+   par généralisation
+   =T(n-(n-1))+1+2+3+........+n-1
+   =T(1)+n(n-1)/2
+  =1+ n^2 -n /2
+elle est de l'ordre O(n^2)
+
+Heap Sort
+Le Heap Sort est un algorithme de tri efficace basé sur la structure de données appelée "heap". Cet algorithme utilise une approche de type "sélection" pour trier les éléments. Voici comment l'implémenter en C, ainsi qu'une évaluation de sa complexité.
+
+Principe du Heap Sort
+1-Construction du Heap : Convertir le tableau en un max-heap, où chaque parent est supérieur ou égal à ses enfants.
+
+2-Tri : Échanger le premier élément (le plus grand) avec le dernier élément du tableau, réduire la taille du heap, puis restaurer la propriété de max-heap pour le reste du tableau.
+
+3-Répéter l'étape 2 jusqu'à ce que tous les éléments soient triés.
+
+Complexité Temporelle
+Meilleur Cas : O(nlogn)
+Pire Cas : O(nlogn)
+Complexité Moyenne : O(nlogn)
+
+Dans tous les cas, l'algorithme Heap Sort a une complexité temporelle de 
+O(nlogn), car il nécessite de construire le max-heap en O(n) et d'effectuer n
+ opérations d'extraction qui nécessitent chacune O(logn).
+
+Complexité Spatiale
+Complexité Spatiale : O(1)
+Heap Sort est un algorithme en place car il ne nécessite pas d'espace supplémentaire proportionnel à la taille des entrées. Il utilise uniquement un espace constant pour les variables temporaires.
+
+En résumé, Heap Sort est un algorithme efficace pour trier des tableaux et est particulièrement utile lorsque la mémoire est limitée .
